@@ -6,17 +6,23 @@ from utils import update_chat
 import os
 from dotenv import load_dotenv
 load_dotenv()
+
 import openai
 
+#to access the openai Key from .env when running the app locally
 openai.api_key = os.getenv('OPENAI_API_KEY')
+
+#to access the openai key from streamlit cloud secrets
+#when deploying the app there, directly from GitHub repo
+#the secret module is specific to Streamlit Cloud. It is not recognized by VS
+#Thats why I keep it as a comment while running locally.
+
+#from streamlit.secrets import SecretManager
+#openai.api_key = SecretManager.get('OPENAI_API_KEY')
+
 
 st.title("Stella Arbeláez Velasco, Cosmetology Specialist")
 st.subheader("Lana, Virtual Assistant")
-
-#model = st.selectbox(
-#    "Select a model",
-#    ("gpt-3.5-turbo", "gpt-4")
-#)
 
 if 'generated' not in st.session_state:
     st.session_state['generated'] = []
@@ -42,6 +48,3 @@ if st.session_state['generated']:
     for i in range(len(st.session_state['generated'])-1, -1, -1):
         message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
         message(st.session_state["generated"][i], key=str(i))
-
-    #with st.expander("Show Messages"):
-    #    st.write(messages)
