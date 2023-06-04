@@ -16,8 +16,8 @@ import openai
 #when deploying the app there, directly from GitHub repo
 #the secret module is specific to Streamlit Cloud. It is not recognized by VS
 #Thats why I keep it as a comment while running locally.
-from streamlit.secrets import SecretManager
-openai.api_key = SecretManager.get('OPENAI_API_KEY')
+#from streamlit.secrets import SecretManager
+openai.api_key = st.secrets['OPENAI_API_KEY']
 
 st.title("Stella Arbeláez Velasco")
 st.header("Cosmetology Specialist")
