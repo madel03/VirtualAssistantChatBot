@@ -83,11 +83,19 @@ def get_chatgpt_response(messages, query: str):
             # To detect the language of the user
             user_language = detect(query)
 
+            # The idea is to show thw message to the users on their language.
+            # The block is working well locally with googletrans version 4.0.0
+            # When deploying on streamlit cloud, they install a previous version 
+            # and it's causing another exception. I tried to force the installation
+            # of version 4.0.0 but they couldn't find it. For the time being, I wil
+            # comment all the lines needed for the translation. Msg will be in english
+            
             # Translates the exception message to the language detected
-            translator = Translator()
+            # translator = Translator()
             error_message = "The chat time has been exceeded. Please wait few minutes to continue our conversation"
-            translated_message = translator.translate(error_message, dest=user_language).text
-            st.error(translated_message)
+            # translated_message = translator.translate(error_message, dest=user_language).text
+            # st.error(translated_message)
+            st.error(error_message) # This line to be removed when solving the translation issue
         except LangDetectException as e:
             error_message = "Invalid entry. Try again"
             st.error(error_message)
