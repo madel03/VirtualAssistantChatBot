@@ -3,4 +3,4 @@ streamlit-chat
 openai
 python-dotenv
 langdetect
-googletrans
+googletrans==4.0.0
