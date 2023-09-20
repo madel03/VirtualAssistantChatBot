@@ -28,7 +28,7 @@ if 'generated' not in st.session_state:
 if 'past' not in st.session_state:
     st.session_state['past'] = []
 
-query = st.text_input("Query: ", key="input")
+query = st.text_input("Write your question in your preferred language (Spanish, Portuguese, Arabic, English, etc): ", key="input")
 
 if 'messages' not in st.session_state:
     st.session_state['messages'] = get_initial_message()
